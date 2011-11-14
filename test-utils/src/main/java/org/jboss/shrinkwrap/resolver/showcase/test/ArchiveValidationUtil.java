@@ -16,6 +16,7 @@
  */
 package org.jboss.shrinkwrap.resolver.showcase.test;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,5 +68,9 @@ public class ArchiveValidationUtil {
         if (!success) {
             throw new AssertionError(sb.toString());
         }
+    }
+
+    public void validate(Collection<? extends Archive<?>> collection) {
+        validate(collection.toArray(new Archive<?>[0]));
     }
 }
