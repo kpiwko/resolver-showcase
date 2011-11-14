@@ -15,7 +15,7 @@ import org.junit.Test;
 /**
  * This class shows how to use settings.xml file to set proxy, secured access, different repositories, etc.
  *
- * FIXME: There should be a way how to disable the need to load effective pom.xml file. ShrinkWrap Resolver should be able to
+ * FIXME: There should be a way how to disable the need to load settings.xml. ShrinkWrap Resolver should be able to
  * get the information which file is being processed from IDE or CLI. See https://jira.codehaus.org/browse/SUREFIRE-790
  *
  * @author <a href="kpiwko@redhat.com">Karel Piwko</a>
