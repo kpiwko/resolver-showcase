@@ -45,40 +45,6 @@
 
     <!-- Plugin Configuration -->
     <build>
-
-        <!-- Plugin Management -->
-        <pluginManagement>
-            <plugins>
-
-                <!-- So m2e doesn't throw errors for features it doesn't support in the POM -->
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>org.apache.maven.plugins</groupId>
-                                        <artifactId>maven-checkstyle-plugin</artifactId>
-                                        <versionRange>[1.0.0,)</versionRange>
-                                        <goals>
-                                            <goal>check</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <execute />
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
-                </plugin>
-
-            </plugins>
-        </pluginManagement>
-
         <plugins>
 
             <!-- Compiler -->
@@ -123,6 +89,8 @@
     <dependencyManagement>
         <dependencies>
 
+            <!-- Override versions from Arquillian BOM until removed -->
+            <!-- FIXME file a JIRA -->
             <dependency>
                 <groupId>org.jboss.shrinkwrap.resolver</groupId>
                 <artifactId>shrinkwrap-resolver-api</artifactId>
