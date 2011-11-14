@@ -186,7 +186,22 @@
                 <artifactId>jboss-as-maven-plugin</artifactId>
                 <version>7.0.2.Final</version>
             </plugin>
+            <!-- Get it from: https://github.com/kpiwko/resolver-showcase/downloads -->
+            <!-- SUREFIRE-790 is required here -->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.11-SNAPSHOT</version>
+            </plugin>
         </plugins>
     </build>
+    
+    <profiles>
+        <profile>
+            <id>foo</id>
+        </profile>
+        <profile>
+            <id>bar</id>
+        </profile>
+    </profiles>
 
 </project>

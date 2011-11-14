@@ -9,6 +9,7 @@ import org.jboss.shrinkwrap.resolver.api.maven.filter.DependencyFilter;
 import org.jboss.shrinkwrap.resolver.api.maven.filter.ScopeFilter;
 import org.jboss.shrinkwrap.resolver.api.maven.filter.StrictFilter;
 import org.jboss.shrinkwrap.resolver.showcase.test.ArchiveValidationUtil;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -80,6 +81,30 @@ public class PomUsageTest {
         Collection<GenericArchive> junitDeps = DependencyResolvers.use(MavenDependencyResolver.class)
         // load Maven pom file to get information about dependencies, dependency management and remote repositories
                 .loadEffectivePom("pom.xml")
+                // import all dependencies in scope compile(default) and runtime
+                // empty scope corresponds to no scope defined, that is actually the compile scope
+                .importAnyDependencies(new ScopeFilter("", "runtime", "compile"))
+                // return back to parent object
+                .up()
+                // add junit dependency but exclude hamcrest
+                .artifact("junit:junit").exclusion("org.hamcrest:*")
+                // get all files defined in the given scopes
+                .resolveAs(GenericArchive.class);
+
+        new ArchiveValidationUtil("commons-io", "junit").validate(junitDeps);
+    }
+
+    // FIXME error handling
+    @Test
+    //@Ignore("Requires surefire-2.11-SNAPSHOT")
+    public void surefire790enabledPOC() {
+
+        System.out.println("Passed pom.xml file: " + System.getProperty("maven.execution.pom"));
+        System.out.println("Passed active profiles: " + System.getProperty("maven.execution.active-profiles"));
+
+        Collection<GenericArchive> junitDeps = DependencyResolvers.use(MavenDependencyResolver.class)
+        // load Maven pom file to get information about dependencies, dependency management and remote repositories
+                .loadEffectivePom(System.getProperty("maven.execution.pom"))
                 // import all dependencies in scope compile(default) and runtime
                 // empty scope corresponds to no scope defined, that is actually the compile scope
                 .importAnyDependencies(new ScopeFilter("", "runtime", "compile"))
