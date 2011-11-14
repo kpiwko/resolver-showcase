@@ -15,6 +15,9 @@ import org.junit.Test;
  * This class shows how to load some of the metadata from a pom.xml file. Metadata are for example dependencies and dependency
  * management sections, remote repository definitions are used as well.
  *
+ * FIXME: There should be a way how to disable the need to load effective pom.xml file. ShrinkWrap Resolver should be able to
+ * get the information which file is being processed from IDE or CLI. See https://jira.codehaus.org/browse/SUREFIRE-790
+ *
  * @author <a href="kpiwko@redhat.com">Karel Piwko</a>
  *
  */
